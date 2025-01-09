@@ -10,24 +10,54 @@
     <button id="next">Next Page</button>
   </div>
 
+  <div id="pageshow-status">
+    pageshow:
+  </div>
   <div id="pageshow">
     pageshow:
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+  <div id="popstate-status">
+    popstate:
   </div>
   <div id="popstate">
     popstate:
   </div>
 
   <script>
-    document.querySelector('#next').addEventListener('click', () => {
-      location.href = '/bfcache/back.html'
+    let pageshowStatus = '-'
+    let isPageShow = '-'
+    window.addEventListener('pageshow', () => {
+      isPageShow = event.persisted
+      render()
     })
 
-    window.addEventListener('pageshow', () => { 
-      document.querySelector('#pageshow').innerHTML = `pageshow: ${event.persisted}`
-    })
+    let popstateStatus = '-'
+    let isPopstate = '-'
     window.addEventListener('popstate', () => {
-      document.querySelector('#popstate').innerHTML = `popstate: ${window.performance.navigation.type}`
+      isPopstate = window.performance.navigation.type
+      render()
     })
+
+    document.querySelector('#next').addEventListener('click', () => {
+      pageshowStatus = 'loading'
+      popstateStatus = 'loading'
+      render()
+      setTimeout(() => {
+        location.href = '/bfcache/back.html'
+      }, 500)
+    })
+
+    function render() {
+      document.querySelector('#pageshow-status').innerHTML = `pageshow status: ${pageshowStatus}`
+      document.querySelector('#pageshow').innerHTML = `pageshow: ${isPageShow}`
+      document.querySelector('#popstate-status').innerHTML = `popstate status: ${popstateStatus}`
+      document.querySelector('#popstate').innerHTML = `popstate: ${isPopstate}`
+    }
   </script>
 </body>
 </html>
