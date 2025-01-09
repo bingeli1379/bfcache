@@ -27,6 +27,7 @@
       document.querySelector('#pageshow').innerHTML = `pageshow: ${event.persisted}`
     })
     window.addEventListener('popstate', () => {
+      count++
       document.querySelector('#popstatecount').innerHTML = `popstatecount: ${count}`
       document.querySelector('#popstate').innerHTML = `popstate: ${window.performance.navigation.type}`
     })
