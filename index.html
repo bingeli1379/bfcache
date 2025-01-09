@@ -12,15 +12,22 @@
   <div id="pageshow">
     pageshow:
   </div>
+  <div id="popstatecount">
+    popstatecount:
+  </div>
   <div id="popstate">
     popstate:
   </div>
 
   <script>
+    let count = 0
+    document.querySelector('#popstatecount').innerHTML = `popstatecount: ${count}`
+
     window.addEventListener('pageshow', () => { 
       document.querySelector('#pageshow').innerHTML = `pageshow: ${event.persisted}`
     })
     window.addEventListener('popstate', () => {
+      document.querySelector('#popstatecount').innerHTML = `popstatecount: ${count}`
       document.querySelector('#popstate').innerHTML = `popstate: ${window.performance.navigation.type}`
     })
   </script>
