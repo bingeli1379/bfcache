@@ -34,19 +34,9 @@
   <script>
     let pageshowStatus = '-'
     let isPageShow = '-'
-    window.addEventListener('pageshow', () => {
-      pageshowStatus = '-'
-      isPageShow = event.persisted
-      render()
-    })
 
     let popstateStatus = '-'
     let isPopstate = '-'
-    window.addEventListener('popstate', () => {
-      popstateStatus = '-'
-      isPopstate = window.performance.navigation.type
-      render()
-    })
 
     document.querySelector('#next').addEventListener('click', () => {
       pageshowStatus = 'loading'
