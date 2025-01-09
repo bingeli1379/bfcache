@@ -32,6 +32,7 @@
     let pageshowStatus = '-'
     let isPageShow = '-'
     window.addEventListener('pageshow', () => {
+      pageshowStatus = '-'
       isPageShow = event.persisted
       render()
     })
@@ -39,6 +40,7 @@
     let popstateStatus = '-'
     let isPopstate = '-'
     window.addEventListener('popstate', () => {
+      popstateStatus = '-'
       isPopstate = window.performance.navigation.type
       render()
     })
@@ -49,7 +51,7 @@
       render()
       setTimeout(() => {
         location.href = '/bfcache/back.html'
-      }, 500)
+      }, 1000)
     })
 
     function render() {
